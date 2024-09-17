@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "expo-template-default",
+    "name": "Coordimate",
+    "slug": "coordimate",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,13 +13,15 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ivancho1392.coordimate"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ivancho1392.coordimate"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +33,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c9d2f496-e4c5-43bb-ba96-429cd66e9a7b"
+      }
+    },
+    "owner": "ivancho1392",
+    "updates": {
+      "url": "https://u.expo.dev/c9d2f496-e4c5-43bb-ba96-429cd66e9a7b"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
