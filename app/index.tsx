@@ -10,9 +10,22 @@ import {
 import { Colors } from "@/constants/Colors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useRouter } from "expo-router";
+import ReusableModal from "@/components/Modal";
+import { useState } from "react";
 
 export default function LoginScreen() {
   const router = useRouter();
+  const [isModalVisible, setIsModalVisible] = useState(false);  // Estado para controlar la visibilidad del modal
+
+  // Función para abrir el modal
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  // Función para cerrar el modal
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -72,12 +85,13 @@ export default function LoginScreen() {
       </TouchableOpacity>
       {/* Enlaces de Olvidé mi contraseña y Crear cuenta */}
       <TouchableOpacity>
-        <Text style={styles.link}>Olvidé mi contraseña</Text>
+        <Text onPress={openModal} style={styles.link}>Olvidé mi contraseña</Text>
       </TouchableOpacity>
 
       <TouchableOpacity>
-        <Text style={styles.link}>Crear cuenta</Text>
+        <Text onPress={openModal} style={styles.link}>Crear cuenta</Text>
       </TouchableOpacity>
+      <ReusableModal isVisible={isModalVisible} onClose={closeModal} />
     </View>
   );
 }

@@ -12,15 +12,28 @@ import { Colors } from "@/constants/Colors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRouter } from "expo-router";
+import ReusableModal from "@/components/Modal";
 
 export default function CreateAlarmScreen() {
   const router = useRouter();
   const [selectedActivity, setSelectedActivity] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);  // Estado para controlar la visibilidad del modal
+
+  // Función para abrir el modal
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  // Función para cerrar el modal
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
 
   return (
     <View style={styles.container}>
       {/* Header con logo e icono de perfil */}
-      <View style={styles.header}>
+      <TouchableOpacity onPress={() => router.push("/")} style={styles.header}>
         <Image
           source={require("../assets/images/logo_coordimate.png")}
           style={styles.logo}
@@ -29,8 +42,9 @@ export default function CreateAlarmScreen() {
           name="account-circle-outline"
           size={35}
           color={Colors.primary}
+          onPress={openModal}
         />
-      </View>
+      </TouchableOpacity>
 
       {/* Título */}
       <Text style={styles.title}>Crear Alarma</Text>
@@ -104,7 +118,7 @@ export default function CreateAlarmScreen() {
       </View>
 
       {/* Botón Crear Alarma */}
-      <TouchableOpacity style={styles.createButton}>
+      <TouchableOpacity onPress={openModal} style={styles.createButton}>
         <View style={styles.buttonContent}>
           <Text style={styles.buttonText}>Crear Alarma</Text>
           <MaterialIcons name="chevron-right" size={24} color="#fff" />
@@ -118,6 +132,7 @@ export default function CreateAlarmScreen() {
       >
         <Text style={styles.cancelText}>Cancelar</Text>
       </TouchableOpacity>
+      <ReusableModal isVisible={isModalVisible} onClose={closeModal} />
     </View>
   );
 }
