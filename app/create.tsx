@@ -13,11 +13,13 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRouter } from "expo-router";
 import ReusableModal from "@/components/Modal";
+import Ia from "@/components/Ia";
 
 export default function CreateAlarmScreen() {
   const router = useRouter();
   const [selectedActivity, setSelectedActivity] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);  // Estado para controlar la visibilidad del modal
+  const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [isIaVisible, setIsIaVisible] = useState(false);  
 
   // Función para abrir el modal
   const openModal = () => {
@@ -27,6 +29,21 @@ export default function CreateAlarmScreen() {
   // Función para cerrar el modal
   const closeModal = () => {
     setIsModalVisible(false);
+  };
+
+  // Función para abrir IA
+  const openIA = () => {
+    setIsIaVisible(true);
+  };
+
+  // Función para cerrar IA
+  const closeIA = () => {
+    setIsIaVisible(false);
+  };
+
+  const navigateToInvitations = () => {
+    closeIA();
+    openModal();
   };
 
 
@@ -118,7 +135,7 @@ export default function CreateAlarmScreen() {
       </View>
 
       {/* Botón Crear Alarma */}
-      <TouchableOpacity onPress={openModal} style={styles.createButton}>
+      <TouchableOpacity onPress={openIA} style={styles.createButton}>
         <View style={styles.buttonContent}>
           <Text style={styles.buttonText}>Crear Alarma</Text>
           <MaterialIcons name="chevron-right" size={24} color="#fff" />
@@ -133,6 +150,12 @@ export default function CreateAlarmScreen() {
         <Text style={styles.cancelText}>Cancelar</Text>
       </TouchableOpacity>
       <ReusableModal isVisible={isModalVisible} onClose={closeModal} />
+
+      <Ia
+        isVisible={isIaVisible}
+        onClose={closeIA}
+        onNavigateToInvitations={navigateToInvitations}
+      />
     </View>
   );
 }
