@@ -75,21 +75,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",  
   },
   logo: {
-    width: 240,
+    width: 200,
     height: 60, 
     resizeMode: "contain",  
   },
   title: {
-    fontSize: 24,
+    fontSize: 33,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 30,
     color: Colors.secondary,
     marginTop: 20, 
   },
   inputContainer: {
     width: "100%",
-    maxWidth: 300,
-    marginBottom: 15,
+    maxWidth: 286,
+    marginBottom: 20,
   },
   labelContainer: {
     flexDirection: "row",  
@@ -116,7 +116,8 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "100%",
-    maxWidth: 300,
+    maxWidth: 286,
+    height: 57,
     backgroundColor: Colors.primary, 
     paddingVertical: 10,
     borderRadius: 5,
@@ -126,12 +127,13 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 19,
   },
   link: {
     color: Colors.links,
-    marginTop: 15,
+    marginTop: 40,
     textDecorationLine: "underline",
+    fontSize: 19,
+    fontStyle: "italic",
   },
 });
