@@ -16,7 +16,7 @@ export default function LoginScreen() {
       {/* Campo Nombre */}
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Nombre *</Text>
-        <TextInput style={styles.input} placeholder="Placeholder" />
+        <TextInput style={styles.input} placeholder="Nombre" />
       </View>
 
       {/* Campo Contraseña */}
@@ -68,29 +68,32 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#333",
+    color: Colors.secondary,
     marginTop: 20, 
   },
   inputContainer: {
     width: "100%",
+    maxWidth: 300,
     marginBottom: 15,
   },
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333",
+    color: Colors.secondary,
     marginBottom: 5,
   },
   input: {
     width: "100%",
     height: 40,
-    borderColor: "#ccc",
+    borderColor: Colors.third,
+    color: Colors.third,
     borderWidth: 1,
     paddingLeft: 10,
     borderRadius: 5,
   },
   button: {
     width: "100%",
+    maxWidth: 300,
     backgroundColor: Colors.primary, 
     paddingVertical: 10,
     borderRadius: 5,
