@@ -15,14 +15,29 @@ export default function LoginScreen() {
 
       {/* Campo Nombre */}
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Nombre *</Text>
-        <TextInput style={styles.input} placeholder="Nombre" />
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Nombre</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Nombre"
+          placeholderTextColor={Colors.third} 
+        />
       </View>
 
       {/* Campo Contraseña */}
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>Contraseña *</Text>
-        <TextInput style={styles.input} placeholder="Contraseña" secureTextEntry />
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Contraseña</Text>
+          <Text style={styles.requiredAsterisk}> *</Text> 
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Contraseña"
+          secureTextEntry
+          placeholderTextColor={Colors.third} 
+        />
       </View>
 
       {/* Botón Ingresar */}
@@ -76,17 +91,25 @@ const styles = StyleSheet.create({
     maxWidth: 300,
     marginBottom: 15,
   },
+  labelContainer: {
+    flexDirection: "row",  
+    marginBottom: 5,
+  },
   label: {
     fontSize: 16,
     fontWeight: "bold",
     color: Colors.secondary,
-    marginBottom: 5,
+  },
+  requiredAsterisk: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: Colors.error,  
   },
   input: {
     width: "100%",
     height: 40,
     borderColor: Colors.third,
-    color: Colors.third,
+    color: Colors.secondary,  
     borderWidth: 1,
     paddingLeft: 10,
     borderRadius: 5,
