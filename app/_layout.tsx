@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 export default function RootLayout() {
   const [loaded] = useFonts({
     Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    RobotoBoldItalic: require('../assets/fonts/Roboto-BoldItalic.ttf'),
   });
 
   useEffect(() => {

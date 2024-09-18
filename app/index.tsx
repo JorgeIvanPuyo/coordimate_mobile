@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { Colors } from "@/constants/Colors";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function LoginScreen() {
   return (
@@ -40,11 +41,13 @@ export default function LoginScreen() {
         />
       </View>
 
-      {/* Botón Ingresar */}
+      {/* Botón Ingresar con ícono */}
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Ingresar</Text>
+        <View style={styles.buttonContent}>
+          <Text style={styles.buttonText}>Ingresar</Text>
+          <MaterialIcons name="chevron-right" size={24} color="#fff" style={styles.icon} /> {/* Ícono a la derecha */}
+        </View>
       </TouchableOpacity>
-
       {/* Enlaces de Olvidé mi contraseña y Crear cuenta */}
       <TouchableOpacity>
         <Text style={styles.link}>Olvidé mi contraseña</Text>
@@ -125,15 +128,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
+  buttonContent: {
+    flexDirection: "row",  // Alinea el texto y el ícono horizontalmente
+    alignItems: "center",
+  },
   buttonText: {
     color: "#fff",
     fontSize: 19,
+    marginRight: 10,  // Espacio entre el texto y el ícono
+  },
+  icon: {
+    marginLeft: 10,  // Asegura que el ícono tenga espacio a la izquierda
   },
   link: {
     color: Colors.links,
     marginTop: 40,
     textDecorationLine: "underline",
     fontSize: 19,
-    fontStyle: "italic",
   },
 });
