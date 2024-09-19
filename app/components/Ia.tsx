@@ -1,7 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { Colors } from "@/constants/Colors";
-import MaterialIcons from '@expo/vector-icons/MaterialIcons'; 
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useRouter } from "expo-router";
 
 // Definir los tipos de las props
@@ -11,7 +11,11 @@ interface ModalProps {
   onNavigateToInvitations: () => void;
 }
 
-const SecondModal: React.FC<ModalProps> = ({ isVisible, onClose, onNavigateToInvitations }) => {
+const SecondModal: React.FC<ModalProps> = ({
+  isVisible,
+  onClose,
+  onNavigateToInvitations,
+}) => {
   const router = useRouter();
   return (
     <Modal
@@ -33,14 +37,27 @@ const SecondModal: React.FC<ModalProps> = ({ isVisible, onClose, onNavigateToInv
 
           {/* Botones */}
           <View style={styles.buttonGroup}>
-            <TouchableOpacity style={styles.outlineButton} onPress={() => {router.push("/"), onClose()}}>
+            <TouchableOpacity
+              style={styles.outlineButton}
+              onPress={() => {
+                router.push("/"), onClose();
+              }}
+            >
               <Text style={styles.outlineButtonText}>Inicio</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.primaryButton} onPress={onNavigateToInvitations}>
+            <TouchableOpacity
+              style={styles.primaryButton}
+              onPress={onNavigateToInvitations}
+            >
               <View style={styles.buttonContent}>
                 <Text style={styles.primaryButtonText}>Invitaciones</Text>
-                <MaterialIcons name="chevron-right" size={24} color="#fff" style={styles.icon} />
+                <MaterialIcons
+                  name="chevron-right"
+                  size={24}
+                  color="#fff"
+                  style={styles.icon}
+                />
               </View>
             </TouchableOpacity>
           </View>
@@ -55,7 +72,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", 
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContainer: {
     width: 363,
@@ -85,21 +102,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   buttonGroup: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
     paddingHorizontal: 10,
   },
   outlineButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderColor: Colors.primary,
     borderWidth: 1,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     width: 140,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   outlineButtonText: {
     color: Colors.primary,
@@ -111,8 +128,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 5,
     width: 140,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   primaryButtonText: {
     color: "#fff",
@@ -120,8 +137,8 @@ const styles = StyleSheet.create({
     marginRight: 10, // Añade espacio entre el texto y el ícono
   },
   buttonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   icon: {
     // Espacio para el ícono
