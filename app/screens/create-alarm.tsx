@@ -14,12 +14,27 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useRouter } from "expo-router";
 import ReusableModal from "@/components/Modal";
 import Ia from "@/components/Ia";
+import { RouteProp } from "@react-navigation/native";
+import { RootStackParamList } from "@/navigation/AppNavigator";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-export default function CreateAlarmScreen() {
-  const router = useRouter();
+type CreateAlarmScreenRouteProp = RouteProp<
+  StackNavigationProp<RootStackParamList>,
+  "CreateAlarm"
+>;
+
+type CreateAlarmScreenProps = {
+  navigation: CreateAlarmScreenRouteProp;
+};
+
+export default function CreateAlarmScreen({
+  navigation,
+}: CreateAlarmScreenProps) {
   const [selectedActivity, setSelectedActivity] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false); 
-  const [isIaVisible, setIsIaVisible] = useState(false);  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isIaVisible, setIsIaVisible] = useState(false);
+
+  const { navigate } = navigation;
 
   // Función para abrir el modal
   const openModal = () => {
@@ -46,13 +61,12 @@ export default function CreateAlarmScreen() {
     openModal();
   };
 
-
   return (
     <View style={styles.container}>
       {/* Header con logo e icono de perfil */}
-      <TouchableOpacity onPress={() => router.push("/")} style={styles.header}>
+      <TouchableOpacity onPress={() => navigate("Home")} style={styles.header}>
         <Image
-          source={require("../assets/images/logo_coordimate.png")}
+          source={require("@/assets/images/logo_coordimate.png")}
           style={styles.logo}
         />
         <MaterialCommunityIcons
@@ -144,7 +158,7 @@ export default function CreateAlarmScreen() {
 
       {/* Botón Cancelar */}
       <TouchableOpacity
-        onPress={() => router.push("/")}
+        onPress={() => navigate("Home")}
         style={styles.cancelButton}
       >
         <Text style={styles.cancelText}>Cancelar</Text>
