@@ -3,19 +3,25 @@ import { Colors } from "@/constants/Colors";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
 
-type HeaderProps = {};
-
-const Header = () => (
-  <TouchableOpacity style={styles.header}>
+const Header = ({ navigation, hideProfile }) => (
+  <TouchableOpacity
+    style={{
+      ...styles.header,
+      justifyContent: hideProfile ? "center" : "space-between",
+    }}
+  >
     <Image
       source={require("@/assets/images/logo_coordimate.png")}
       style={styles.logo}
     />
-    <MaterialCommunityIcons
-      name="account-circle-outline"
-      size={35}
-      color={Colors.primary}
-    />
+    {hideProfile ? null : (
+      <MaterialCommunityIcons
+        name="account-circle-outline"
+        size={35}
+        color={Colors.primary}
+        onPress={() => navigation?.navigate("Profile")}
+      />
+    )}
   </TouchableOpacity>
 );
 
@@ -24,10 +30,9 @@ const styles = StyleSheet.create({
     display: "flex",
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 16,
     marginBottom: 8,
+    gap: 8,
   },
   logo: {
     width: 200,

@@ -1,11 +1,11 @@
 import React from "react";
-import { Header } from "@/components/header";
 import { StyleSheet, View } from "react-native";
 import { Menu } from "./components";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Colors } from "@/constants/Colors";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "@/navigation/AppNavigator";
+import { LayoutAuthenticated } from "@/components/LayoutAuthenticated";
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "Home">;
@@ -13,10 +13,7 @@ type HomeScreenProps = {
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
-    <View>
-      <View>
-        <Header />
-      </View>
+    <LayoutAuthenticated navigation={navigation}>
       <View style={styles.containerMenu}>
         <Menu
           title="Crear Alarma"
@@ -24,7 +21,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           navigation={navigation}
           iconComponent={
             <MaterialCommunityIcons
-              name="account-circle-outline"
+              name="clock-plus-outline"
               size={28}
               color={Colors.primary}
             />
@@ -36,7 +33,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           navigation={navigation}
           iconComponent={
             <MaterialCommunityIcons
-              name="account-circle-outline"
+              name="clipboard-text-outline"
               size={28}
               color={Colors.primary}
             />
@@ -48,7 +45,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           navigation={navigation}
           iconComponent={
             <MaterialCommunityIcons
-              name="account-circle-outline"
+              name="alarm"
               size={28}
               color={Colors.primary}
             />
@@ -60,14 +57,14 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           navigation={navigation}
           iconComponent={
             <MaterialCommunityIcons
-              name="account-circle-outline"
+              name="bookmark-outline"
               size={28}
               color={Colors.primary}
             />
           }
         />
       </View>
-    </View>
+    </LayoutAuthenticated>
   );
 };
 
@@ -76,7 +73,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "100%",
+    height: "calc(100% - 70px)",
+    paddingTop: 90,
+    paddingBottom: 170,
   },
 });
 
