@@ -1,91 +1,120 @@
 import { Colors } from "@/constants/Colors";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { useState } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
 
-const Fields = () => (
-  <SafeAreaView>
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>Perfil de Usuario</Text>
-      <MaterialCommunityIcons
-        name="clipboard-account-outline"
-        size={40}
-        color={Colors.secondary}
-      />
-    </View>
+type FieldsType = {
+  name: string;
+  age: string;
+  genra: string;
+  preference: string;
+  address: string;
+  city: string;
+};
 
-    <View style={styles.inputContainer}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Nombre</Text>
-        <Text style={styles.requiredAsterisk}> *</Text>
-      </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre"
-        placeholderTextColor={Colors.third}
-      />
-    </View>
+type FieldsProps = {
+  fields: Partial<FieldsType>;
+  hableonChanges: (value: string, key: keyof FieldsType) => void;
+};
 
-    <View style={styles.inputContainer}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Edad</Text>
-        <Text style={styles.requiredAsterisk}> *</Text>
+const Fields = ({ fields, hableonChanges }: FieldsProps) => {
+  return (
+    <SafeAreaView>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Perfil de Usuario</Text>
+        <MaterialCommunityIcons
+          name="clipboard-account-outline"
+          size={40}
+          color={Colors.secondary}
+        />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Edad"
-        placeholderTextColor={Colors.third}
-      />
-    </View>
 
-    <View style={styles.inputContainer}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Genero</Text>
-        <Text style={styles.requiredAsterisk}> *</Text>
+      <View style={styles.inputContainer}>
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Nombre</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Nombre"
+          placeholderTextColor={Colors.third}
+          value={fields.name}
+          onChangeText={(value) => hableonChanges(value, "name")}
+        />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Geberi"
-        placeholderTextColor={Colors.third}
-      />
-    </View>
 
-    <View style={styles.inputContainer}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Preferencias</Text>
-        <Text style={styles.requiredAsterisk}> *</Text>
+      <View style={styles.inputContainer}>
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Edad</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Edad"
+          placeholderTextColor={Colors.third}
+          value={fields.age}
+          onChangeText={(value) => hableonChanges(value, "age")}
+        />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Preferencias"
-        placeholderTextColor={Colors.third}
-      />
-    </View>
 
-    <View style={styles.inputContainer}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Dirección</Text>
-        <Text style={styles.requiredAsterisk}> *</Text>
+      <View style={styles.inputContainer}>
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Genero</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Geberi"
+          placeholderTextColor={Colors.third}
+          value={fields.genra}
+          onChangeText={(value) => hableonChanges(value, "genra")}
+        />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Dirección"
-        placeholderTextColor={Colors.third}
-      />
-    </View>
 
-    <View style={styles.inputContainer}>
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>Ciudad</Text>
-        <Text style={styles.requiredAsterisk}> *</Text>
+      <View style={styles.inputContainer}>
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Preferencias</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Preferencias"
+          placeholderTextColor={Colors.third}
+          value={fields.preference}
+          onChangeText={(value) => hableonChanges(value, "preference")}
+        />
       </View>
-      <TextInput
-        style={styles.input}
-        placeholder="Ciudad"
-        placeholderTextColor={Colors.third}
-      />
-    </View>
-  </SafeAreaView>
-);
+
+      <View style={styles.inputContainer}>
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Dirección</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Dirección"
+          placeholderTextColor={Colors.third}
+          value={fields.address}
+          onChangeText={(value) => hableonChanges(value, "address")}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>Ciudad</Text>
+          <Text style={styles.requiredAsterisk}> *</Text>
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Ciudad"
+          placeholderTextColor={Colors.third}
+          value={fields.city}
+          onChangeText={(value) => hableonChanges(value, "city")}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -200,3 +229,5 @@ const styles = StyleSheet.create({
 });
 
 export { Fields };
+
+export type { FieldsType };
