@@ -76,6 +76,20 @@ const styles = StyleSheet.create({
     color: Colors.primary,
     fontSize: 18,
   },
+  pickerContainer: {
+    borderColor: Colors.third,
+    borderWidth: 1,
+    borderRadius: 5,
+    height: 40,
+    justifyContent: "center",
+  },
+  picker: {
+    width: "100%",
+    maxWidth: 300,
+    height: "100%",
+    color: Colors.secondary,
+    borderColor: Colors.third,
+  },
 });
 
 export { styles };

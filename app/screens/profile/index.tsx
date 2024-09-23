@@ -1,12 +1,14 @@
+import React from "react";
 import { LayoutAuthenticated } from "@/components/LayoutAuthenticated";
 import { Colors } from "@/constants/Colors";
 import { RootStackParamList } from "@/navigation/AppNavigator";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
-import { Actions, Fields, FieldsType } from "./components";
+import { Fields, FieldsType } from "./components";
 import { useState } from "react";
 import { ConfirmModal } from "@/components/ConfirmModal";
+import { Actions } from "@/components/actions";
 
 type ProfileScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "Profile">;
@@ -65,7 +67,12 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
       >
         <ScrollView>
           <Fields fields={fields} hableonChanges={handleChanges} />
-          <Actions cancel={onCancel} saveData={onSave} disabled={!anyChanges} />
+          <Actions
+            confirmText="Actualizar datos"
+            cancel={onCancel}
+            saveData={onSave}
+            disabled={!anyChanges}
+          />
         </ScrollView>
         {openChangesModal ? (
           <ConfirmModal
