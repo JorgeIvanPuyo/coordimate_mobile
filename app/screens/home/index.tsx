@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         />
         <Menu
           title="Invitaciones"
-          route="CreateAlarm"
+          route="Invitations"
           navigation={navigation}
           iconComponent={
             <MaterialCommunityIcons

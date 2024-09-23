@@ -3,28 +3,56 @@ import { Colors } from "@/constants/Colors";
 import { RootStackParamList } from "@/navigation/AppNavigator";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
-import { Actions, Fields } from "./components";
+import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { Actions, Fields, FieldsType } from "./components";
+import { useState } from "react";
+import { ConfirmModal } from "@/components/ConfirmModal";
 
 type ProfileScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "Profile">;
 };
 
+const defaultFields: FieldsType = {
+  name: "",
+  age: "",
+  genra: "",
+  preference: "",
+  address: "",
+  city: "",
+};
+
 const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
+  const [fields, setFields] = useState<Partial<FieldsType>>({
+    ...defaultFields,
+  });
+  const [openChangesModal, setOpenChangesModal] = useState(false);
+  const [openUnchangesModal, setOpeUnchangesModal] = useState(false);
+
+  const handleChanges = (value: string, field: string) => {
+    setFields({ ...fields, [field]: value });
+  };
   const onCancel = () => {
     navigation.goBack();
   };
 
   const onSave = () => {
     // Guard
+    const anyChanges = Object.keys(fields).some((key) => fields[key]);
+    if (anyChanges) {
+      setOpenChangesModal(true);
+      return;
+    }
   };
+
+  const handleClose = () => {
+    setOpenChangesModal(false);
+    setFields({
+      ...defaultFields,
+    });
+    onCancel();
+  };
+
+  const anyChanges = Object.keys(fields).some((key) => fields[key]);
 
   return (
     <LayoutAuthenticated navigation={navigation} hideProfile>
@@ -36,9 +64,25 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
         }}
       >
         <ScrollView>
-          <Fields />
-          <Actions cancel={onCancel} saveData={onSave} />
+          <Fields fields={fields} hableonChanges={handleChanges} />
+          <Actions cancel={onCancel} saveData={onSave} disabled={!anyChanges} />
         </ScrollView>
+        {openChangesModal ? (
+          <ConfirmModal
+            isVisible={openChangesModal}
+            title="Tus datos de usuario han sido actualizados con exito."
+            description="Esta aplicación utiliza estos datos para generar consejos por IA basados en tus preferencias."
+            confirmText="Cerrar"
+            onClose={handleClose}
+            icon={
+              <MaterialCommunityIcons
+                name="check-circle-outline"
+                size={50}
+                color={Colors.succes}
+              />
+            }
+          />
+        ) : null}
       </SafeAreaView>
     </LayoutAuthenticated>
   );

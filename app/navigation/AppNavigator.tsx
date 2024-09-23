@@ -4,12 +4,14 @@ import LoginScreen from "@/screens/login";
 import CreateAlarmScreen from "@/screens/create-alarm";
 import { HomeScreen } from "@/screens/home";
 import { ProfileScreen } from "@/screens/profile";
+import { InvitationsScreen } from "@/screens/invitations";
 
 export type RootStackParamList = {
-  Login: undefined;
-  Home: undefined;
-  CreateAlarm: undefined;
-  Profile: undefined;
+  Login: Object | undefined;
+  Home: Object | undefined;
+  CreateAlarm: Object | undefined;
+  Profile: Object | undefined;
+  Invitations: Object | undefined;
   Details: { itemId: number };
 };
 
@@ -36,6 +38,11 @@ const AppNavigator = () => {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Invitations"
+        component={InvitationsScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
