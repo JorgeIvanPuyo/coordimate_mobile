@@ -12,6 +12,7 @@ type ModalProps = {
   onClose: () => void;
   description: string;
   icon?: React.ReactNode;
+  hideIcon?: boolean;
 };
 
 const ConfirmModal: React.FC<ModalProps> = ({
@@ -21,6 +22,7 @@ const ConfirmModal: React.FC<ModalProps> = ({
   onClose,
   description,
   icon,
+  hideIcon,
 }) => {
   const router = useRouter();
   return (
@@ -42,12 +44,14 @@ const ConfirmModal: React.FC<ModalProps> = ({
             <TouchableOpacity style={styles.primaryButton} onPress={onClose}>
               <View style={styles.buttonContent}>
                 <Text style={styles.primaryButtonText}>{confirmText}</Text>
-                <MaterialIcons
-                  name="chevron-right"
-                  size={24}
-                  color="#fff"
-                  style={styles.icon}
-                />
+                {hideIcon ? null : (
+                  <MaterialIcons
+                    name="chevron-right"
+                    size={24}
+                    color="#fff"
+                    style={styles.icon}
+                  />
+                )}
               </View>
             </TouchableOpacity>
           </View>

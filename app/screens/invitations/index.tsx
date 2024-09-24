@@ -9,6 +9,8 @@ import { GuestsList, Header } from "./components";
 import { Actions } from "@/components/actions";
 import { Colors } from "@/constants/Colors";
 import { FormControl, MenuItem, Select } from "@mui/material";
+import { ConfirmModal } from "@/components/ConfirmModal";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 type InvitationsScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, "Invitations">;
@@ -22,6 +24,7 @@ const InvitationsScreen = ({ navigation }: InvitationsScreenProps) => {
   const [guests, setGuests] = useState(GUESTS);
   const [friends, setFriends] = useState(FRIENDS);
   const [newGuest, setNewGuest] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleCancel = () => {
     navigation.goBack();
@@ -32,6 +35,14 @@ const InvitationsScreen = ({ navigation }: InvitationsScreenProps) => {
     setGuests([...guests, newGuest]);
     setFriends(friendsFiltered);
     setNewGuest("");
+    setShowModal(true);
+  };
+
+  const handleRemoveGuest = (guestsToRemove: string[]) => {
+    const guestsFiltered = guests.filter(
+      (guest) => !guestsToRemove.includes(guest)
+    );
+    setGuests(guestsFiltered);
   };
 
   return (
@@ -79,7 +90,7 @@ const InvitationsScreen = ({ navigation }: InvitationsScreenProps) => {
           </Text>
         </View>
 
-        <GuestsList guests={guests} onRemove={() => null} />
+        <GuestsList guests={guests} onRemove={handleRemoveGuest} />
 
         <Actions
           confirmText="Enviar Invitaciones"
@@ -88,6 +99,23 @@ const InvitationsScreen = ({ navigation }: InvitationsScreenProps) => {
           disabled={!newGuest}
         />
       </View>
+      {showModal ? (
+        <ConfirmModal
+          title="Tus invitaciones fueron enviadas con exito."
+          description=""
+          isVisible={showModal}
+          onClose={() => setShowModal(false)}
+          confirmText="Cerrar"
+          hideIcon
+          icon={
+            <MaterialCommunityIcons
+              name="check-circle-outline"
+              size={50}
+              color={Colors.succes}
+            />
+          }
+        />
+      ) : null}
     </LayoutAuthenticated>
   );
 };

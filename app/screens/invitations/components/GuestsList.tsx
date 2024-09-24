@@ -10,7 +10,17 @@ type GuestsListProps = {
 };
 
 const GuestsList: React.FC<GuestsListProps> = ({ guests, onRemove }) => {
-  const [guestsSelected, setGuestsSelected] = useState([]);
+  const [guestsSelected, setGuestsSelected] = useState<Array<string>>([]);
+
+  const handleOnchange = (guest: string) => {
+    const isSelected = guestsSelected.find((i) => i === guest);
+    if (isSelected) {
+      setGuestsSelected(guestsSelected.filter((i) => i !== guest));
+    } else {
+      setGuestsSelected([...guestsSelected, guest]);
+    }
+  };
+
   return (
     <SafeAreaView>
       <Text
@@ -34,7 +44,10 @@ const GuestsList: React.FC<GuestsListProps> = ({ guests, onRemove }) => {
             }}
             key={guest}
           >
-            <Checkbox />
+            <Checkbox
+              value={guestsSelected.find((i) => i === guest)}
+              onChange={() => handleOnchange(guest)}
+            />
             <Text style={{}}>{guest}</Text>
           </View>
         ))}
