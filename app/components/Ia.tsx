@@ -9,12 +9,14 @@ interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
   onNavigateToInvitations: () => void;
+  onNavigateToHome: () => void;
 }
 
 const SecondModal: React.FC<ModalProps> = ({
   isVisible,
   onClose,
   onNavigateToInvitations,
+  onNavigateToHome,
 }) => {
   const router = useRouter();
   return (
@@ -40,7 +42,7 @@ const SecondModal: React.FC<ModalProps> = ({
             <TouchableOpacity
               style={styles.outlineButton}
               onPress={() => {
-                router.push("/"), onClose();
+                onNavigateToHome(), onClose();
               }}
             >
               <Text style={styles.outlineButtonText}>Inicio</Text>
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: "#fff",
     fontSize: 16,
-    marginRight: 10, // Añade espacio entre el texto y el ícono
+    marginRight: 10, 
   },
   buttonContent: {
     flexDirection: "row",

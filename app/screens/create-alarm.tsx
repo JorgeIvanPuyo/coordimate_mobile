@@ -11,17 +11,12 @@ import { Picker } from "@react-native-picker/picker";
 import { Colors } from "@/constants/Colors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useRouter } from "expo-router";
 import ReusableModal from "@/components/Modal";
 import Ia from "@/components/Ia";
-import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "@/navigation/AppNavigator";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-type CreateAlarmScreenRouteProp = RouteProp<
-  StackNavigationProp<RootStackParamList>,
-  "CreateAlarm"
->;
+type CreateAlarmScreenRouteProp = StackNavigationProp<RootStackParamList, "CreateAlarm">;
 
 type CreateAlarmScreenProps = {
   navigation: CreateAlarmScreenRouteProp;
@@ -33,6 +28,12 @@ export default function CreateAlarmScreen({
   const [selectedActivity, setSelectedActivity] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isIaVisible, setIsIaVisible] = useState(false);
+
+  // Estados para los campos del formulario
+  const [alarmName, setAlarmName] = useState("");
+  const [alarmTime, setAlarmTime] = useState("");
+  const [alarmDate, setAlarmDate] = useState("");
+  const [alarmPlace, setAlarmPlace] = useState("");
 
   const { navigate } = navigation;
 
@@ -58,8 +59,26 @@ export default function CreateAlarmScreen({
 
   const navigateToInvitations = () => {
     closeIA();
-    openModal();
+    navigate("Invitations");
   };
+
+  const navigateToHome = () => {
+    closeIA();
+    navigate("Home");
+  };
+
+   // Función para navegar a profile
+   const openProfile = () => {
+    navigate("Profile");
+  };
+
+  // Función que determina si el botón debe estar habilitado
+  const isButtonEnabled =
+    alarmName.trim() !== "" &&
+    alarmTime.trim() !== "" &&
+    alarmDate.trim() !== "" &&
+    alarmPlace.trim() !== "" &&
+    selectedActivity !== "";
 
   return (
     <View style={styles.container}>
@@ -73,7 +92,7 @@ export default function CreateAlarmScreen({
           name="account-circle-outline"
           size={35}
           color={Colors.primary}
-          onPress={openModal}
+          onPress={openProfile}
         />
       </TouchableOpacity>
 
@@ -90,6 +109,8 @@ export default function CreateAlarmScreen({
           style={styles.input}
           placeholder="Nombre Alarma"
           placeholderTextColor={Colors.third}
+          value={alarmName}
+          onChangeText={(text) => setAlarmName(text)}
         />
       </View>
 
@@ -102,6 +123,8 @@ export default function CreateAlarmScreen({
           style={styles.input}
           placeholder="Hora Alarma"
           placeholderTextColor={Colors.third}
+          value={alarmTime}
+          onChangeText={(text) => setAlarmTime(text)}
         />
       </View>
 
@@ -114,6 +137,8 @@ export default function CreateAlarmScreen({
           style={styles.input}
           placeholder="Fecha Alarma"
           placeholderTextColor={Colors.third}
+          value={alarmDate}
+          onChangeText={(text) => setAlarmDate(text)} 
         />
       </View>
 
@@ -126,6 +151,8 @@ export default function CreateAlarmScreen({
           style={styles.input}
           placeholder="Lugar de la actividad"
           placeholderTextColor={Colors.third}
+          value={alarmPlace}
+          onChangeText={(text) => setAlarmPlace(text)} 
         />
       </View>
 
@@ -149,7 +176,14 @@ export default function CreateAlarmScreen({
       </View>
 
       {/* Botón Crear Alarma */}
-      <TouchableOpacity onPress={openIA} style={styles.createButton}>
+      <TouchableOpacity
+        onPress={openIA}
+        style={[
+          styles.createButton,
+          { backgroundColor: isButtonEnabled ? Colors.primary : Colors.third }, 
+        ]}
+        disabled={!isButtonEnabled} 
+      >
         <View style={styles.buttonContent}>
           <Text style={styles.buttonText}>Crear Alarma</Text>
           <MaterialIcons name="chevron-right" size={24} color="#fff" />
@@ -169,6 +203,7 @@ export default function CreateAlarmScreen({
         isVisible={isIaVisible}
         onClose={closeIA}
         onNavigateToInvitations={navigateToInvitations}
+        onNavigateToHome={navigateToHome}
       />
     </View>
   );

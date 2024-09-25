@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,6 @@ import { Colors } from "@/constants/Colors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useRouter } from "expo-router";
 import ReusableModal from "@/components/Modal";
-import { useState } from "react";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "@/navigation/AppNavigator";
@@ -27,8 +26,12 @@ type LoginScreenProps = {
 
 export default function LoginScreen({ navigation }: LoginScreenProps) {
   const router = useRouter();
-  const [isModalVisible, setIsModalVisible] = useState(false); // Estado para controlar la visibilidad del modal
+  const [isModalVisible, setIsModalVisible] = useState(false); 
   const { navigate } = navigation;
+
+  // Estados para controlar los campos de nombre y contraseña
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   // Función para abrir el modal
   const openModal = () => {
@@ -39,6 +42,9 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
   const closeModal = () => {
     setIsModalVisible(false);
   };
+
+  // Función que determina si el botón debe estar habilitado
+  const isButtonEnabled = username.trim() !== "" && password.trim() !== "";
 
   return (
     <View style={styles.container}>
@@ -63,6 +69,8 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           style={styles.input}
           placeholder="Nombre"
           placeholderTextColor={Colors.third}
+          value={username}
+          onChangeText={(text) => setUsername(text)} 
         />
       </View>
 
@@ -77,11 +85,20 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
           placeholder="Contraseña"
           secureTextEntry
           placeholderTextColor={Colors.third}
+          value={password}
+          onChangeText={(text) => setPassword(text)} 
         />
       </View>
 
       {/* Botón Ingresar con ícono */}
-      <TouchableOpacity style={styles.button} onPress={() => navigate("Home")}>
+      <TouchableOpacity
+        style={[
+          styles.button,
+          { backgroundColor: isButtonEnabled ? Colors.primary : Colors.third }, 
+        ]}
+        onPress={() => navigate("Home")}
+        disabled={!isButtonEnabled} 
+      >
         <View style={styles.buttonContent}>
           <Text style={styles.buttonText}>Ingresar</Text>
           <MaterialIcons
@@ -89,10 +106,10 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
             size={24}
             color="#fff"
             style={styles.icon}
-          />{" "}
-          {/* Ícono a la derecha */}
+          />
         </View>
       </TouchableOpacity>
+
       {/* Enlaces de Olvidé mi contraseña y Crear cuenta */}
       <TouchableOpacity>
         <Text onPress={openModal} style={styles.link}>
@@ -171,7 +188,6 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 286,
     height: 57,
-    backgroundColor: Colors.primary,
     paddingVertical: 10,
     borderRadius: 5,
     justifyContent: "center",
@@ -179,16 +195,16 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonContent: {
-    flexDirection: "row", // Alinea el texto y el ícono horizontalmente
+    flexDirection: "row", 
     alignItems: "center",
   },
   buttonText: {
     color: "#fff",
     fontSize: 19,
-    marginRight: 10, // Espacio entre el texto y el ícono
+    marginRight: 10,
   },
   icon: {
-    marginLeft: 10, // Asegura que el ícono tenga espacio a la izquierda
+    marginLeft: 10,
   },
   link: {
     color: Colors.links,
