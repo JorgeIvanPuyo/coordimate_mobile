@@ -2,6 +2,9 @@ import React from "react";
 import { Colors } from "@/constants/Colors";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { Appbar, Menu, PaperProvider, Portal } from "react-native-paper";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
+const Drawer = createDrawerNavigator();
 
 const Header = ({ navigation, hideProfile }) => {
   const [visible, setVisible] = React.useState(false);
@@ -21,7 +24,7 @@ const Header = ({ navigation, hideProfile }) => {
             source={require("@/assets/images/logo_coordimate.png")}
             style={styles.logo}
           />
-          <Appbar.Action icon="menu" onPress={openMenu} />
+          {/* <Appbar.Action icon="menu" onPress={openMenu} /> */}
         </View>
       </Appbar.Header>
       {visible && (
