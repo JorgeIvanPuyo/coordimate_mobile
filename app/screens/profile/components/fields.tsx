@@ -20,15 +20,6 @@ type FieldsProps = {
 const Fields = ({ fields, hableonChanges }: FieldsProps) => {
   return (
     <SafeAreaView>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Perfil de Usuario</Text>
-        <MaterialCommunityIcons
-          name="clipboard-account-outline"
-          size={40}
-          color={Colors.secondary}
-        />
-      </View>
-
       <View style={styles.inputContainer}>
         <View style={styles.labelContainer}>
           <Text style={styles.label}>Nombre</Text>
@@ -139,14 +130,11 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   titleContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
     gap: 10,
     marginBottom: 30,
   },
   title: {
-    fontSize: 33,
+    fontSize: 30,
     fontWeight: "bold",
     color: Colors.secondary,
   },

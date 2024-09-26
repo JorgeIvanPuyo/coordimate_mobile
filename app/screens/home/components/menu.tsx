@@ -35,17 +35,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 8,
-    paddingVertical: 24,
+    paddingVertical: 64,
   },
   containerItems: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 8,
   },
   text: {
-    fontSize: 24,
+    fontSize: 32,
     color: Colors.primary,
   },
 });

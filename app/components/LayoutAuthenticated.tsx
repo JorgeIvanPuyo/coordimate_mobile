@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Header } from "./header";
 
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingBottom: 10,
-    paddingHorizontal: 48,
+    paddingHorizontal: 24,
   },
 });
 

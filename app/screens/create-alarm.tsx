@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  ScrollView,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { Colors } from "@/constants/Colors";
@@ -15,8 +16,12 @@ import ReusableModal from "@/components/Modal";
 import Ia from "@/components/Ia";
 import { RootStackParamList } from "@/navigation/AppNavigator";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { LayoutAuthenticated } from "@/components/LayoutAuthenticated";
 
-type CreateAlarmScreenRouteProp = StackNavigationProp<RootStackParamList, "CreateAlarm">;
+type CreateAlarmScreenRouteProp = StackNavigationProp<
+  RootStackParamList,
+  "CreateAlarm"
+>;
 
 type CreateAlarmScreenProps = {
   navigation: CreateAlarmScreenRouteProp;
@@ -67,8 +72,8 @@ export default function CreateAlarmScreen({
     navigate("Home");
   };
 
-   // Función para navegar a profile
-   const openProfile = () => {
+  // Función para navegar a profile
+  const openProfile = () => {
     navigate("Profile");
   };
 
@@ -81,131 +86,125 @@ export default function CreateAlarmScreen({
     selectedActivity !== "";
 
   return (
-    <View style={styles.container}>
-      {/* Header con logo e icono de perfil */}
-      <TouchableOpacity onPress={() => navigate("Home")} style={styles.header}>
-        <Image
-          source={require("@/assets/images/logo_coordimate.png")}
-          style={styles.logo}
-        />
-        <MaterialCommunityIcons
-          name="account-circle-outline"
-          size={35}
-          color={Colors.primary}
-          onPress={openProfile}
-        />
-      </TouchableOpacity>
+    <LayoutAuthenticated navigation={navigation}>
+      <ScrollView>
+        <View style={styles.container}>
+          {/* Título */}
+          <Text style={styles.title}>Crear Alarma</Text>
 
-      {/* Título */}
-      <Text style={styles.title}>Crear Alarma</Text>
+          {/* Formulario */}
+          <View style={styles.inputContainer}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Nombre Alarma</Text>
+              <Text style={styles.requiredAsterisk}> *</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="Nombre Alarma"
+              placeholderTextColor={Colors.third}
+              value={alarmName}
+              onChangeText={(text) => setAlarmName(text)}
+            />
+          </View>
 
-      {/* Formulario */}
-      <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Nombre Alarma</Text>
-          <Text style={styles.requiredAsterisk}> *</Text>
-        </View>
-        <TextInput
-          style={styles.input}
-          placeholder="Nombre Alarma"
-          placeholderTextColor={Colors.third}
-          value={alarmName}
-          onChangeText={(text) => setAlarmName(text)}
-        />
-      </View>
+          <View style={styles.inputContainer}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Hora Alarma</Text>
+              <Text style={styles.requiredAsterisk}> *</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="Hora Alarma"
+              placeholderTextColor={Colors.third}
+              value={alarmTime}
+              onChangeText={(text) => setAlarmTime(text)}
+            />
+          </View>
 
-      <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Hora Alarma</Text>
-          <Text style={styles.requiredAsterisk}> *</Text>
-        </View>
-        <TextInput
-          style={styles.input}
-          placeholder="Hora Alarma"
-          placeholderTextColor={Colors.third}
-          value={alarmTime}
-          onChangeText={(text) => setAlarmTime(text)}
-        />
-      </View>
+          <View style={styles.inputContainer}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Fecha Alarma</Text>
+              <Text style={styles.requiredAsterisk}> *</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="Fecha Alarma"
+              placeholderTextColor={Colors.third}
+              value={alarmDate}
+              onChangeText={(text) => setAlarmDate(text)}
+            />
+          </View>
 
-      <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Fecha Alarma</Text>
-          <Text style={styles.requiredAsterisk}> *</Text>
-        </View>
-        <TextInput
-          style={styles.input}
-          placeholder="Fecha Alarma"
-          placeholderTextColor={Colors.third}
-          value={alarmDate}
-          onChangeText={(text) => setAlarmDate(text)} 
-        />
-      </View>
+          <View style={styles.inputContainer}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Lugar Alarma</Text>
+              <Text style={styles.requiredAsterisk}> *</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="Lugar de la actividad"
+              placeholderTextColor={Colors.third}
+              value={alarmPlace}
+              onChangeText={(text) => setAlarmPlace(text)}
+            />
+          </View>
 
-      <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Lugar Alarma</Text>
-          <Text style={styles.requiredAsterisk}> *</Text>
-        </View>
-        <TextInput
-          style={styles.input}
-          placeholder="Lugar de la actividad"
-          placeholderTextColor={Colors.third}
-          value={alarmPlace}
-          onChangeText={(text) => setAlarmPlace(text)} 
-        />
-      </View>
+          <View style={styles.inputContainer}>
+            <View style={styles.labelContainer}>
+              <Text style={styles.label}>Tipo de Actividad</Text>
+              <Text style={styles.requiredAsterisk}> *</Text>
+            </View>
+            <View style={styles.pickerContainer}>
+              <Picker
+                selectedValue={selectedActivity}
+                onValueChange={(itemValue) => setSelectedActivity(itemValue)}
+                style={styles.picker}
+              >
+                <Picker.Item label="Actividad asociada a la alarma" value="" />
+                <Picker.Item label="Reunión" value="reunion" />
+                <Picker.Item label="Evento" value="evento" />
+                <Picker.Item label="Tarea" value="tarea" />
+              </Picker>
+            </View>
+          </View>
 
-      <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Tipo de Actividad</Text>
-          <Text style={styles.requiredAsterisk}> *</Text>
-        </View>
-        <View style={styles.pickerContainer}>
-          <Picker
-            selectedValue={selectedActivity}
-            onValueChange={(itemValue) => setSelectedActivity(itemValue)}
-            style={styles.picker}
+          {/* Botón Crear Alarma */}
+          <TouchableOpacity
+            onPress={openIA}
+            style={[
+              styles.createButton,
+              {
+                backgroundColor: isButtonEnabled
+                  ? Colors.primary
+                  : Colors.third,
+              },
+            ]}
+            disabled={!isButtonEnabled}
           >
-            <Picker.Item label="Actividad asociada a la alarma" value="" />
-            <Picker.Item label="Reunión" value="reunion" />
-            <Picker.Item label="Evento" value="evento" />
-            <Picker.Item label="Tarea" value="tarea" />
-          </Picker>
+            <View style={styles.buttonContent}>
+              <Text style={styles.buttonText}>Crear Alarma</Text>
+              <MaterialIcons name="chevron-right" size={24} color="#fff" />
+            </View>
+          </TouchableOpacity>
+
+          {/* Botón Cancelar */}
+          <TouchableOpacity
+            onPress={() => navigate("Home")}
+            style={styles.cancelButton}
+          >
+            <Text style={styles.cancelText}>Cancelar</Text>
+          </TouchableOpacity>
+          <ReusableModal isVisible={isModalVisible} onClose={closeModal} />
+
+          <Ia
+            isVisible={isIaVisible}
+            onClose={closeIA}
+            onNavigateToInvitations={navigateToInvitations}
+            onNavigateToHome={navigateToHome}
+          />
         </View>
-      </View>
-
-      {/* Botón Crear Alarma */}
-      <TouchableOpacity
-        onPress={openIA}
-        style={[
-          styles.createButton,
-          { backgroundColor: isButtonEnabled ? Colors.primary : Colors.third }, 
-        ]}
-        disabled={!isButtonEnabled} 
-      >
-        <View style={styles.buttonContent}>
-          <Text style={styles.buttonText}>Crear Alarma</Text>
-          <MaterialIcons name="chevron-right" size={24} color="#fff" />
-        </View>
-      </TouchableOpacity>
-
-      {/* Botón Cancelar */}
-      <TouchableOpacity
-        onPress={() => navigate("Home")}
-        style={styles.cancelButton}
-      >
-        <Text style={styles.cancelText}>Cancelar</Text>
-      </TouchableOpacity>
-      <ReusableModal isVisible={isModalVisible} onClose={closeModal} />
-
-      <Ia
-        isVisible={isIaVisible}
-        onClose={closeIA}
-        onNavigateToInvitations={navigateToInvitations}
-        onNavigateToHome={navigateToHome}
-      />
-    </View>
+      </ScrollView>
+    </LayoutAuthenticated>
   );
 }
 

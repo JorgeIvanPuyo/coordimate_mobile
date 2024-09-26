@@ -84,9 +84,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   picker: {
-    width: "100%",
-    maxWidth: 300,
-    height: "100%",
     color: Colors.secondary,
     borderColor: Colors.third,
   },

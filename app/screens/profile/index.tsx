@@ -4,7 +4,7 @@ import { Colors } from "@/constants/Colors";
 import { RootStackParamList } from "@/navigation/AppNavigator";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Fields, FieldsType } from "./components";
 import { useState } from "react";
 import { ConfirmModal } from "@/components/ConfirmModal";
@@ -58,14 +58,16 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
 
   return (
     <LayoutAuthenticated navigation={navigation} hideProfile>
-      <SafeAreaView
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <ScrollView>
+      <ScrollView>
+        <SafeAreaView>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Perfil de Usuario</Text>
+            <MaterialCommunityIcons
+              name="clipboard-account-outline"
+              size={36}
+              color={Colors.secondary}
+            />
+          </View>
           <Fields fields={fields} hableonChanges={handleChanges} />
           <Actions
             confirmText="Actualizar datos"
@@ -73,24 +75,24 @@ const ProfileScreen = ({ navigation }: ProfileScreenProps) => {
             saveData={onSave}
             disabled={!anyChanges}
           />
-        </ScrollView>
-        {openChangesModal ? (
-          <ConfirmModal
-            isVisible={openChangesModal}
-            title="Tus datos de usuario han sido actualizados con exito."
-            description="Esta aplicación utiliza estos datos para generar consejos por IA basados en tus preferencias."
-            confirmText="Cerrar"
-            onClose={handleClose}
-            icon={
-              <MaterialCommunityIcons
-                name="check-circle-outline"
-                size={50}
-                color={Colors.succes}
-              />
-            }
-          />
-        ) : null}
-      </SafeAreaView>
+          {openChangesModal ? (
+            <ConfirmModal
+              isVisible={openChangesModal}
+              title="Tus datos de usuario han sido actualizados con exito."
+              description="Esta aplicación utiliza estos datos para generar consejos por IA basados en tus preferencias."
+              confirmText="Cerrar"
+              onClose={handleClose}
+              icon={
+                <MaterialCommunityIcons
+                  name="check-circle-outline"
+                  size={50}
+                  color={Colors.succes}
+                />
+              }
+            />
+          ) : null}
+        </SafeAreaView>
+      </ScrollView>
     </LayoutAuthenticated>
   );
 };
@@ -121,7 +123,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    gap: 10,
+    alignItems: "center",
+    gap: 8,
     marginBottom: 30,
   },
   title: {

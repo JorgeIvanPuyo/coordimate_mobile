@@ -22,43 +22,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           iconComponent={
             <MaterialCommunityIcons
               name="clock-plus-outline"
-              size={28}
-              color={Colors.primary}
-            />
-          }
-        />
-        <Menu
-          title="Ver agenda"
-          route="CreateAlarm"
-          navigation={navigation}
-          iconComponent={
-            <MaterialCommunityIcons
-              name="clipboard-text-outline"
-              size={28}
-              color={Colors.primary}
-            />
-          }
-        />
-        <Menu
-          title="Recordatorios"
-          route="CreateAlarm"
-          navigation={navigation}
-          iconComponent={
-            <MaterialCommunityIcons
-              name="alarm"
-              size={28}
-              color={Colors.primary}
-            />
-          }
-        />
-        <Menu
-          title="Invitaciones"
-          route="Invitations"
-          navigation={navigation}
-          iconComponent={
-            <MaterialCommunityIcons
-              name="bookmark-outline"
-              size={28}
+              size={48}
               color={Colors.primary}
             />
           }
@@ -73,8 +37,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "calc(100% - 70px)",
-    paddingTop: 90,
+    paddingTop: 150,
     paddingBottom: 170,
   },
 });

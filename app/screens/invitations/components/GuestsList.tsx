@@ -1,8 +1,8 @@
 import { Colors } from "@/constants/Colors";
 import React, { useState } from "react";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
-import Checkbox from "@mui/material/Checkbox";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { GuestItem } from "./GuestItem";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type GuestsListProps = {
   guests: string[];
@@ -25,26 +25,16 @@ const GuestsList: React.FC<GuestsListProps> = ({ guests, onRemove }) => {
       </Text>
       <View style={{}}>
         {guests.map((guest) => (
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              borderBottomWidth: 1,
-            }}
-            key={guest}
-          >
-            <Checkbox />
-            <Text style={{}}>{guest}</Text>
-          </View>
+          <GuestItem key={guest} guest={guest} />
         ))}
         <View
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "end",
+            justifyContent: "flex-end",
             alignItems: "center",
             gap: 4,
+            marginTop: 8,
           }}
         >
           <Text
@@ -55,7 +45,7 @@ const GuestsList: React.FC<GuestsListProps> = ({ guests, onRemove }) => {
             Eliminar contactos seleccionados
           </Text>
           <TouchableOpacity onPress={() => onRemove(guestsSelected)}>
-            <DeleteOutlineIcon name="trash" size={24} color={"error"} />
+            <MaterialIcons name="delete" size={28} color={Colors.error} />
           </TouchableOpacity>
         </View>
       </View>
