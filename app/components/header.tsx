@@ -21,59 +21,57 @@ const Header = ({ navigation, hideProfile }) => {
             source={require("@/assets/images/logo_coordimate.png")}
             style={styles.logo}
           />
-          <Appbar.Action icon="dots-vertical" onPress={openMenu} />
+          <Appbar.Action icon="menu" onPress={openMenu} />
         </View>
       </Appbar.Header>
       {visible && (
         <PaperProvider>
-          <Portal>
-            <View
-              style={{
-                position: "absolute",
-                flex: 1,
-                top: -20,
-                left: 150,
-                backgroundColor: "white",
-                height: "100%",
-                width: "100%",
-                padding: 8,
-                zIndex: 99999,
+          <View
+            style={{
+              position: "absolute",
+              flex: 1,
+              top: -20,
+              left: 150,
+              backgroundColor: "white",
+              height: "100%",
+              width: "100%",
+              padding: 8,
+              zIndex: 99999,
+            }}
+          >
+            <Menu.Item
+              contentStyle={{ paddingHorizontal: 16 }}
+              titleStyle={{ color: Colors.secondary }}
+              rippleColor={Colors.secondary}
+              leadingIcon="clipboard-text-outline"
+              onPress={() => {
+                setVisible(false);
+                navigation.navigate("CreateAlarm");
               }}
-            >
-              <Menu.Item
-                contentStyle={{ paddingHorizontal: 16 }}
-                titleStyle={{ color: Colors.secondary }}
-                rippleColor={Colors.secondary}
-                leadingIcon="clipboard-text-outline"
-                onPress={() => {
-                  setVisible(false);
-                  navigation.navigate("CreateAlarm");
-                }}
-                title="Agenda"
-              />
-              <Menu.Item
-                contentStyle={{ paddingHorizontal: 8 }}
-                rippleColor={Colors.secondary}
-                titleStyle={{ color: Colors.secondary }}
-                leadingIcon="bookmark-outline"
-                onPress={() => {
-                  setVisible(false);
-                  navigation.navigate("Profile");
-                }}
-                title="Mi perfil"
-              />
-              <Menu.Item
-                contentStyle={{ paddingHorizontal: 0 }}
-                titleStyle={{ color: Colors.secondary }}
-                leadingIcon="account-circle-outline"
-                onPress={() => {
-                  setVisible(false);
-                  navigation.navigate("Invitations");
-                }}
-                title="Invitaciones"
-              />
-            </View>
-          </Portal>
+              title="Agenda"
+            />
+            <Menu.Item
+              contentStyle={{ paddingHorizontal: 8 }}
+              rippleColor={Colors.secondary}
+              titleStyle={{ color: Colors.secondary }}
+              leadingIcon="bookmark-outline"
+              onPress={() => {
+                setVisible(false);
+                navigation.navigate("Profile");
+              }}
+              title="Mi perfil"
+            />
+            <Menu.Item
+              contentStyle={{ paddingHorizontal: 0 }}
+              titleStyle={{ color: Colors.secondary }}
+              leadingIcon="account-circle-outline"
+              onPress={() => {
+                setVisible(false);
+                navigation.navigate("Invitations");
+              }}
+              title="Invitaciones"
+            />
+          </View>
         </PaperProvider>
       )}
     </SafeAreaView>
