@@ -1,50 +1,76 @@
-# Welcome to your Expo app 👋
+# Proyecto UX - Maquetación de Frontend para Mobile en React Native COORDIMATE  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este repositorio contiene el código fuente para la aplicación móvil COORDIMATE desarrollada en **React Native** como parte de la materia de **UX** de la maestría en Ingenieria de Software MISO. La aplicación ha sido diseñada y desarrollada siguiendo el sistema de diseño de Material Design, y está lista para ejecutarse tanto en dispositivos Android como en el navegador web para su visualización.  
 
-## Get started
+## Descargar APK.
+[Link de descarga](https://expo.dev/artifacts/eas/2t4MtM8oaAgLvMsQtkKfjv.apk)  
 
-1. Install dependencies
+## Correr aplicación en local.  
+[Instrucciones para despliegue en local](https://github.com/JorgeIvanPuyo/coordimate_mobile/wiki/Coordimate) 
 
-   ```bash
-   npm install
-   ```
+## Pantallas desarrolladas.  
+[Prototipo interactivo en Figma](https://www.figma.com/proto/KmrxOMGrcTNCLcMIZY64PE/Coordimate?node-id=172-4431&node-type=frame&t=GwYv3hKgXaoiGCXC-0&scaling=min-zoom&content-scaling=fixed&page-id=2%3A152)
 
-2. Start the app
+## Capturas de las pantallas desarrolladas.  
+### Login  
+![ux1](https://github.com/user-attachments/assets/cf41c98b-6d2c-4d2f-b6a4-48f6677f0b86)  
+### Home  
+![ux2](https://github.com/user-attachments/assets/e79c402b-bb2f-49f6-97bc-6e6067da41c7)  
+### Crear alarma  
+![ux3](https://github.com/user-attachments/assets/97c88915-a0c0-4ff3-a86b-dafbfd660281)  
+### Consejos de IA  
+![ux4](https://github.com/user-attachments/assets/48ceed3b-9456-489c-af0a-3d162e8fffa9)  
+### Invitaciones  
+![ux5](https://github.com/user-attachments/assets/29c3289f-bdcc-471b-8c44-56b2bfdd2c15)  
+### Perfil de usuario  
+![ux6](https://github.com/user-attachments/assets/26efd8af-9471-451d-8551-edd8cc408a3e) 
+### Funcionalidad no disponible   
+![ux7](https://github.com/user-attachments/assets/dbfe933a-6464-41d2-99e6-87a8800e6f5c)  
 
-   ```bash
-    npx expo start
-   ```
+# Proyecto UX - Maquetación de Frontend para Mobile en React Native - Instrucciones para despliegue en local
 
-In the output, you'll find options to open the app in a
+## Clonar el proyecto
+Tambipen puedes clonar el proyecto y correrlo en tu computadora.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Comandos básicos para clonar el repositorio:
 
 ```bash
-npm run reset-project
+git clone git@github.com:JorgeIvanPuyo/coordimate_mobile.git
+cd coordimate
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Instalación de dependencias
+Después de clonar el repositorio, sigue los siguientes pasos para instalar las dependencias necesarias.
 
-## Learn more
+### En Windows, Linux o macOS:
+Asegúrate de tener node y npm instalados. Puedes verificar la instalación con:
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+node -v
+npm -v
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Si aún no tienes Expo CLI, puedes instalarla globalmente ejecutando:
+```bash
+npm install -g expo-cli
+```
 
-## Join the community
+Instalar las dependencias del proyecto:
+```bash
+npm install
+```
 
-Join our community of developers creating universal apps.
+## Ejecutar la aplicación
+Una vez instaladas las dependencias, puedes ejecutar la aplicación en el navegador o en un dispositivo físico.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Ejecutar en el navegador
+Para ejecutar la aplicación en el navegador, utiliza el siguiente comando:
+```bash
+npx expo start
+```
+
+Luego, presiona la tecla w para abrir la aplicación en el navegador web.
+
+Ejecutar en dispositivos físicos o simuladores
+En dispositivos Android/iOS físicos: Escanea el código QR que aparecerá en la terminal con la aplicación Expo Go.
+En emuladores o simuladores: Puedes configurar el simulador de tu plataforma (Android o iOS) y presionar a para abrir en Android o i para abrir en iOS.
