@@ -38,8 +38,8 @@ const InvitationsScreen = ({ navigation }: InvitationsScreenProps) => {
     <LayoutAuthenticated navigation={navigation}>
       <Header />
 
-      <View style={{ display: "flex", flexDirection: "column", rowGap: 32 }}>
-        <ScrollView>
+      <ScrollView>
+        <View style={{ display: "flex", flexDirection: "column", rowGap: 32 }}>
           <View>
             <View>
               <Text style={styles.label}>Nombre de Alarma</Text>
@@ -90,8 +90,8 @@ const InvitationsScreen = ({ navigation }: InvitationsScreenProps) => {
             cancel={handleCancel}
             disabled={!newGuest}
           />
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </LayoutAuthenticated>
   );
 };

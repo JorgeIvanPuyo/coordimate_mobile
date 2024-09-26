@@ -34,6 +34,16 @@ const BottomTabNavigation = ({ navigation }) => {
           <Text style={styles.itemText}>Invitaciones</Text>
         </View>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => gotTo("Profile")}>
+        <View style={styles.item}>
+          <MaterialIcons
+            name="verified-user"
+            size={24}
+            color={Colors.secondary}
+          />
+          <Text style={styles.itemText}>Perfil</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
